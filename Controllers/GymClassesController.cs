@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GymManager.Models;
+using NuGet.DependencyResolver;
 
 namespace GymManager.Controllers
 {
@@ -22,86 +23,105 @@ namespace GymManager.Controllers
 
         // GET: api/GymClasses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GymClass>>> GetgymClasses()
+        public async Task<ActionResult<IEnumerable<GymClassDto>>> GetGymClasses()
         {
-            return await _context.gymClasses.ToListAsync();
+            var dtos = await _context.gymClasses
+                .Include(g => g.Trainer)
+                .Select(g => new GymClassDto
+                {
+                    GymClassId = g.GymClassId,
+                    Name = g.Name,
+                    TrainerId = g.TrainerId,
+                    TrainerName = g.Trainer.FirstName + " " + g.Trainer.LastName,
+                    ScheduleTime = g.ScheduleTime,
+                    MaxCapacity = g.MaxCapacity
+                })
+                .ToListAsync();
+
+            return Ok(dtos);
         }
 
         // GET: api/GymClasses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GymClass>> GetGymClass(int id)
+        public async Task<ActionResult<GymClassDto>> GetGymClass(int id)
         {
-            var gymClass = await _context.gymClasses.FindAsync(id);
+            var g = await _context.gymClasses
+                .Include(gc => gc.Trainer)
+                .FirstOrDefaultAsync(gc => gc.GymClassId == id);
 
-            if (gymClass == null)
-            {
+            if (g == null)
                 return NotFound();
-            }
 
-            return gymClass;
+            var dto = new GymClassDto
+            {
+                GymClassId = g.GymClassId,
+                Name = g.Name,
+                TrainerId = g.TrainerId,
+                TrainerName = g.Trainer.FirstName + " " + g.Trainer.LastName,
+                ScheduleTime = g.ScheduleTime,
+                MaxCapacity = g.MaxCapacity
+            };
+
+            return Ok(dto);
         }
 
         // PUT: api/GymClasses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGymClass(int id, GymClass gymClass)
+        public async Task<IActionResult> PutGymClass(int id, GymClassDto dto)
         {
-            if (id != gymClass.GymClassId)
-            {
+            if (id != dto.GymClassId)
                 return BadRequest();
-            }
 
-            _context.Entry(gymClass).State = EntityState.Modified;
+            var g = await _context.gymClasses.FindAsync(id);
+            if (g == null)
+                return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GymClassExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            g.Name = dto.Name;
+            g.TrainerId = dto.TrainerId;
+            g.ScheduleTime = dto.ScheduleTime;
+            g.MaxCapacity = dto.MaxCapacity;
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         // POST: api/GymClasses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<GymClass>> PostGymClass(GymClass gymClass)
+        public async Task<ActionResult<GymClassDto>> PostGymClass(GymClassDto dto)
         {
-            _context.gymClasses.Add(gymClass);
+            var trainer = await _context.Trainers.FindAsync(dto.TrainerId);
+            if (trainer == null)
+                return BadRequest("Trainer not found.");
+
+            var g = new GymClass
+            {
+                Name = dto.Name,
+                TrainerId = dto.TrainerId,
+                Trainer = trainer, 
+                ScheduleTime = dto.ScheduleTime,
+                MaxCapacity = dto.MaxCapacity
+            };
+
+            _context.gymClasses.Add(g);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGymClass", new { id = gymClass.GymClassId }, gymClass);
+            dto.GymClassId = g.GymClassId;
+            return CreatedAtAction(nameof(GetGymClass), new { id = g.GymClassId }, dto);
         }
+
 
         // DELETE: api/GymClasses/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGymClass(int id)
         {
-            var gymClass = await _context.gymClasses.FindAsync(id);
-            if (gymClass == null)
-            {
+            var g = await _context.gymClasses.FindAsync(id);
+            if (g == null)
                 return NotFound();
-            }
 
-            _context.gymClasses.Remove(gymClass);
+            _context.gymClasses.Remove(g);
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool GymClassExists(int id)
-        {
-            return _context.gymClasses.Any(e => e.GymClassId == id);
         }
     }
 }

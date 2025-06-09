@@ -22,86 +22,110 @@ namespace GymManager.Controllers
 
         // GET: api/ClassRegistrations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClassRegistration>>> GetClassRegistrations()
+        public async Task<ActionResult<IEnumerable<ClassRegistrationDto>>> GetClassRegistrations()
         {
-            return await _context.ClassRegistrations.ToListAsync();
+            var dtos = await _context.ClassRegistrations
+                .Include(r => r.Member)
+                .Include(r => r.GymClass)
+                .Select(r => new ClassRegistrationDto
+                {
+                    ClassRegistrationId = r.ClassRegistrationId,
+                    MemberId = r.MemberId,
+                    MemberFullName = r.Member.FirstName + " " + r.Member.LastName,
+                    GymClassId = r.GymClassId,
+                    GymClassName = r.GymClass.Name,
+                    RegistrationDate = r.RegistrationDate
+                })
+                .ToListAsync();
+
+            return Ok(dtos);
         }
 
         // GET: api/ClassRegistrations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClassRegistration>> GetClassRegistration(int id)
+        public async Task<ActionResult<ClassRegistrationDto>> GetClassRegistration(int id)
         {
-            var classRegistration = await _context.ClassRegistrations.FindAsync(id);
+            var r = await _context.ClassRegistrations
+                .Include(x => x.Member)
+                .Include(x => x.GymClass)
+                .FirstOrDefaultAsync(x => x.ClassRegistrationId == id);
 
-            if (classRegistration == null)
-            {
+            if (r == null)
                 return NotFound();
-            }
 
-            return classRegistration;
+            var dto = new ClassRegistrationDto
+            {
+                ClassRegistrationId = r.ClassRegistrationId,
+                MemberId = r.MemberId,
+                MemberFullName = r.Member.FirstName + " " + r.Member.LastName,
+                GymClassId = r.GymClassId,
+                GymClassName = r.GymClass.Name,
+                RegistrationDate = r.RegistrationDate
+            };
+
+            return Ok(dto);
         }
 
         // PUT: api/ClassRegistrations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClassRegistration(int id, ClassRegistration classRegistration)
+        public async Task<IActionResult> PutClassRegistration(int id, ClassRegistrationDto dto)
         {
-            if (id != classRegistration.ClassRegistrationId)
-            {
+            if (id != dto.ClassRegistrationId)
                 return BadRequest();
-            }
 
-            _context.Entry(classRegistration).State = EntityState.Modified;
+            var r = await _context.ClassRegistrations.FindAsync(id);
+            if (r == null)
+                return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClassRegistrationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            r.MemberId = dto.MemberId;
+            r.GymClassId = dto.GymClassId;
+            r.RegistrationDate = dto.RegistrationDate;
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         // POST: api/ClassRegistrations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ClassRegistration>> PostClassRegistration(ClassRegistration classRegistration)
+        public async Task<ActionResult<ClassRegistrationDto>> PostClassRegistration(ClassRegistrationDto dto)
         {
-            _context.ClassRegistrations.Add(classRegistration);
+            var member = await _context.Members.FindAsync(dto.MemberId);
+            if (member == null)
+                return BadRequest("Member not found.");
+
+            var gymClass = await _context.gymClasses.FindAsync(dto.GymClassId);
+            if (gymClass == null)
+                return BadRequest("Gym class not found.");
+
+            var r = new ClassRegistration
+            {
+                MemberId = dto.MemberId,
+                Member = member,
+                GymClassId = dto.GymClassId,
+                GymClass = gymClass, 
+                RegistrationDate = dto.RegistrationDate
+            };
+
+            _context.ClassRegistrations.Add(r);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClassRegistration", new { id = classRegistration.ClassRegistrationId }, classRegistration);
+            dto.ClassRegistrationId = r.ClassRegistrationId;
+            return CreatedAtAction(nameof(GetClassRegistration), new { id = r.ClassRegistrationId }, dto);
         }
+
 
         // DELETE: api/ClassRegistrations/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClassRegistration(int id)
         {
-            var classRegistration = await _context.ClassRegistrations.FindAsync(id);
-            if (classRegistration == null)
-            {
+            var r = await _context.ClassRegistrations.FindAsync(id);
+            if (r == null)
                 return NotFound();
-            }
 
-            _context.ClassRegistrations.Remove(classRegistration);
+            _context.ClassRegistrations.Remove(r);
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool ClassRegistrationExists(int id)
-        {
-            return _context.ClassRegistrations.Any(e => e.ClassRegistrationId == id);
         }
     }
 }

@@ -18,7 +18,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ClassRegistration"
+                    "$ref": "#/components/schemas/ClassRegistrationDto"
                   }
                 }
               },
@@ -26,7 +26,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ClassRegistration"
+                    "$ref": "#/components/schemas/ClassRegistrationDto"
                   }
                 }
               },
@@ -34,7 +34,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ClassRegistration"
+                    "$ref": "#/components/schemas/ClassRegistrationDto"
                   }
                 }
               }
@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             }
           }
@@ -71,17 +71,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               }
             }
@@ -111,17 +111,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ClassRegistration"
+                  "$ref": "#/components/schemas/ClassRegistrationDto"
                 }
               }
             }
@@ -147,17 +147,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ClassRegistration"
+                "$ref": "#/components/schemas/ClassRegistrationDto"
               }
             }
           }
@@ -203,7 +203,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GymClass"
+                    "$ref": "#/components/schemas/GymClassDto"
                   }
                 }
               },
@@ -211,7 +211,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GymClass"
+                    "$ref": "#/components/schemas/GymClassDto"
                   }
                 }
               },
@@ -219,7 +219,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/GymClass"
+                    "$ref": "#/components/schemas/GymClassDto"
                   }
                 }
               }
@@ -235,17 +235,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             }
           }
@@ -256,17 +256,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               }
             }
@@ -296,17 +296,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GymClass"
+                  "$ref": "#/components/schemas/GymClassDto"
                 }
               }
             }
@@ -332,17 +332,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GymClass"
+                "$ref": "#/components/schemas/GymClassDto"
               }
             }
           }
@@ -388,7 +388,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Member"
+                    "$ref": "#/components/schemas/MemberDto"
                   }
                 }
               },
@@ -396,7 +396,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Member"
+                    "$ref": "#/components/schemas/MemberDto"
                   }
                 }
               },
@@ -404,7 +404,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Member"
+                    "$ref": "#/components/schemas/MemberDto"
                   }
                 }
               }
@@ -420,17 +420,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             }
           }
@@ -441,17 +441,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               }
             }
@@ -481,17 +481,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Member"
+                  "$ref": "#/components/schemas/MemberDto"
                 }
               }
             }
@@ -517,17 +517,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Member"
+                "$ref": "#/components/schemas/MemberDto"
               }
             }
           }
@@ -573,7 +573,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Payment"
+                    "$ref": "#/components/schemas/PaymentDto"
                   }
                 }
               },
@@ -581,7 +581,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Payment"
+                    "$ref": "#/components/schemas/PaymentDto"
                   }
                 }
               },
@@ -589,7 +589,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Payment"
+                    "$ref": "#/components/schemas/PaymentDto"
                   }
                 }
               }
@@ -605,17 +605,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             }
           }
@@ -626,17 +626,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               }
             }
@@ -666,17 +666,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Payment"
+                  "$ref": "#/components/schemas/PaymentDto"
                 }
               }
             }
@@ -702,17 +702,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Payment"
+                "$ref": "#/components/schemas/PaymentDto"
               }
             }
           }
@@ -758,7 +758,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Trainer"
+                    "$ref": "#/components/schemas/TrainerDto"
                   }
                 }
               },
@@ -766,7 +766,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Trainer"
+                    "$ref": "#/components/schemas/TrainerDto"
                   }
                 }
               },
@@ -774,7 +774,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Trainer"
+                    "$ref": "#/components/schemas/TrainerDto"
                   }
                 }
               }
@@ -790,17 +790,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             }
           }
@@ -811,17 +811,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               }
             }
@@ -851,17 +851,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Trainer"
+                  "$ref": "#/components/schemas/TrainerDto"
                 }
               }
             }
@@ -887,17 +887,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Trainer"
+                "$ref": "#/components/schemas/TrainerDto"
               }
             }
           }
@@ -933,11 +933,7 @@
   },
   "components": {
     "schemas": {
-      "ClassRegistration": {
-        "required": [
-          "gymClass",
-          "member"
-        ],
+      "ClassRegistrationDto": {
         "type": "object",
         "properties": {
           "classRegistrationId": {
@@ -948,27 +944,26 @@
             "type": "integer",
             "format": "int32"
           },
+          "memberFullName": {
+            "type": "string",
+            "nullable": true
+          },
           "gymClassId": {
             "type": "integer",
             "format": "int32"
           },
+          "gymClassName": {
+            "type": "string",
+            "nullable": true
+          },
           "registrationDate": {
             "type": "string",
             "format": "date-time"
-          },
-          "member": {
-            "$ref": "#/components/schemas/Member"
-          },
-          "gymClass": {
-            "$ref": "#/components/schemas/GymClass"
           }
         },
         "additionalProperties": false
       },
-      "GymClass": {
-        "required": [
-          "trainer"
-        ],
+      "GymClassDto": {
         "type": "object",
         "properties": {
           "gymClassId": {
@@ -983,6 +978,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "trainerName": {
+            "type": "string",
+            "nullable": true
+          },
           "scheduleTime": {
             "type": "string",
             "format": "time"
@@ -990,21 +989,11 @@
           "maxCapacity": {
             "type": "integer",
             "format": "int32"
-          },
-          "trainer": {
-            "$ref": "#/components/schemas/Trainer"
-          },
-          "classRegistrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ClassRegistration"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Member": {
+      "MemberDto": {
         "type": "object",
         "properties": {
           "memberId": {
@@ -1035,20 +1024,14 @@
             "type": "string",
             "format": "date-time"
           },
-          "classRegistrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ClassRegistration"
-            },
-            "nullable": true
+          "registeredClassCount": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "Payment": {
-        "required": [
-          "member"
-        ],
+      "PaymentDto": {
         "type": "object",
         "properties": {
           "paymentId": {
@@ -1058,6 +1041,10 @@
           "memberId": {
             "type": "integer",
             "format": "int32"
+          },
+          "memberFullName": {
+            "type": "string",
+            "nullable": true
           },
           "amount": {
             "type": "number",
@@ -1070,14 +1057,11 @@
           "date": {
             "type": "string",
             "format": "date-time"
-          },
-          "member": {
-            "$ref": "#/components/schemas/Member"
           }
         },
         "additionalProperties": false
       },
-      "Trainer": {
+      "TrainerDto": {
         "type": "object",
         "properties": {
           "trainerId": {
@@ -1102,13 +1086,6 @@
           },
           "specialization": {
             "type": "string",
-            "nullable": true
-          },
-          "gymClasses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GymClass"
-            },
             "nullable": true
           }
         },

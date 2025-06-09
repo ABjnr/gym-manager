@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.ClassRegistration, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.ClassRegistrationDto, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,14 +28,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "classRegistration",
-        "Type": "GymManager.Models.ClassRegistration",
+        "Name": "dto",
+        "Type": "GymManager.Models.ClassRegistrationDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.ClassRegistration",
+        "Type": "GymManager.Models.ClassRegistrationDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.ClassRegistration",
+        "Type": "GymManager.Models.ClassRegistrationDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -85,8 +85,8 @@
         "IsRequired": true
       },
       {
-        "Name": "classRegistration",
-        "Type": "GymManager.Models.ClassRegistration",
+        "Name": "dto",
+        "Type": "GymManager.Models.ClassRegistrationDto",
         "IsRequired": true
       }
     ],
@@ -110,7 +110,7 @@
   },
   {
     "ContainingType": "GymManager.Controllers.GymClassesController",
-    "Method": "GetgymClasses",
+    "Method": "GetGymClasses",
     "RelativePath": "api/GymClasses",
     "HttpMethod": "GET",
     "IsController": true,
@@ -118,7 +118,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.GymClass, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.GymClassDto, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -137,14 +137,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "gymClass",
-        "Type": "GymManager.Models.GymClass",
+        "Name": "dto",
+        "Type": "GymManager.Models.GymClassDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.GymClass",
+        "Type": "GymManager.Models.GymClassDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -170,7 +170,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.GymClass",
+        "Type": "GymManager.Models.GymClassDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -194,8 +194,8 @@
         "IsRequired": true
       },
       {
-        "Name": "gymClass",
-        "Type": "GymManager.Models.GymClass",
+        "Name": "dto",
+        "Type": "GymManager.Models.GymClassDto",
         "IsRequired": true
       }
     ],
@@ -227,7 +227,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.Member, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.MemberDto, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -246,14 +246,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "member",
-        "Type": "GymManager.Models.Member",
+        "Name": "dto",
+        "Type": "GymManager.Models.MemberDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Member",
+        "Type": "GymManager.Models.MemberDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -279,7 +279,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Member",
+        "Type": "GymManager.Models.MemberDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -303,8 +303,8 @@
         "IsRequired": true
       },
       {
-        "Name": "member",
-        "Type": "GymManager.Models.Member",
+        "Name": "dto",
+        "Type": "GymManager.Models.MemberDto",
         "IsRequired": true
       }
     ],
@@ -336,7 +336,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.Payment, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.PaymentDto, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -355,14 +355,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "payment",
-        "Type": "GymManager.Models.Payment",
+        "Name": "dto",
+        "Type": "GymManager.Models.PaymentDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Payment",
+        "Type": "GymManager.Models.PaymentDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -388,7 +388,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Payment",
+        "Type": "GymManager.Models.PaymentDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -412,8 +412,8 @@
         "IsRequired": true
       },
       {
-        "Name": "payment",
-        "Type": "GymManager.Models.Payment",
+        "Name": "dto",
+        "Type": "GymManager.Models.PaymentDto",
         "IsRequired": true
       }
     ],
@@ -445,7 +445,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.Trainer, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GymManager.Models.TrainerDto, GymManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -464,14 +464,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "trainer",
-        "Type": "GymManager.Models.Trainer",
+        "Name": "dto",
+        "Type": "GymManager.Models.TrainerDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Trainer",
+        "Type": "GymManager.Models.TrainerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -497,7 +497,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GymManager.Models.Trainer",
+        "Type": "GymManager.Models.TrainerDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -521,8 +521,8 @@
         "IsRequired": true
       },
       {
-        "Name": "trainer",
-        "Type": "GymManager.Models.Trainer",
+        "Name": "dto",
+        "Type": "GymManager.Models.TrainerDto",
         "IsRequired": true
       }
     ],

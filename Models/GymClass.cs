@@ -23,4 +23,15 @@ namespace GymManager.Models
         public virtual ICollection<ClassRegistration>? ClassRegistrations { get; set; }
 
     }
+
+    public class GymClassDto
+    {
+        public int GymClassId { get; set; }
+        public string Name { get; set; }
+        public int TrainerId { get; set; }
+        public string TrainerName { get; set; }
+        public TimeOnly ScheduleTime { get; set; }
+        public int MaxCapacity { get; set; }
+    }
+
 }

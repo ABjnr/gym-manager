@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GymManager.Models;
 
+
 namespace GymManager.Controllers
 {
     [Route("api/[controller]")]
@@ -22,86 +23,105 @@ namespace GymManager.Controllers
 
         // GET: api/Payments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
+        public async Task<ActionResult<IEnumerable<PaymentDto>>> GetPayments()
         {
-            return await _context.Payments.ToListAsync();
+            var dtos = await _context.Payments
+                .Include(p => p.Member)
+                .Select(p => new PaymentDto
+                {
+                    PaymentId = p.PaymentId,
+                    MemberId = p.MemberId,
+                    MemberFullName = p.Member.FirstName + " " + p.Member.LastName,
+                    Amount = p.Amount,
+                    Method = p.Method,
+                    Date = p.Date
+                })
+                .ToListAsync();
+
+            return Ok(dtos);
         }
 
         // GET: api/Payments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> GetPayment(int id)
+        public async Task<ActionResult<PaymentDto>> GetPayment(int id)
         {
-            var payment = await _context.Payments.FindAsync(id);
+            var p = await _context.Payments
+                .Include(x => x.Member)
+                .FirstOrDefaultAsync(x => x.PaymentId == id);
 
-            if (payment == null)
-            {
+            if (p == null)
                 return NotFound();
-            }
 
-            return payment;
+            var dto = new PaymentDto
+            {
+                PaymentId = p.PaymentId,
+                MemberId = p.MemberId,
+                MemberFullName = p.Member.FirstName + " " + p.Member.LastName,
+                Amount = p.Amount,
+                Method = p.Method,
+                Date = p.Date
+            };
+
+            return Ok(dto);
         }
 
         // PUT: api/Payments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPayment(int id, Payment payment)
+        public async Task<IActionResult> PutPayment(int id, PaymentDto dto)
         {
-            if (id != payment.PaymentId)
-            {
+            if (id != dto.PaymentId)
                 return BadRequest();
-            }
 
-            _context.Entry(payment).State = EntityState.Modified;
+            var p = await _context.Payments.FindAsync(id);
+            if (p == null)
+                return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PaymentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            p.MemberId = dto.MemberId;
+            p.Amount = dto.Amount;
+            p.Method = dto.Method;
+            p.Date = dto.Date;
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         // POST: api/Payments
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        public async Task<ActionResult<PaymentDto>> PostPayment(PaymentDto dto)
         {
-            _context.Payments.Add(payment);
+            var member = await _context.Members.FindAsync(dto.MemberId);
+            if (member == null)
+                return BadRequest("Member not found.");
+
+            var p = new Payment
+            {
+                MemberId = dto.MemberId,
+                Member = member, 
+                Amount = dto.Amount,
+                Method = dto.Method,
+                Date = dto.Date
+            };
+
+            _context.Payments.Add(p);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPayment", new { id = payment.PaymentId }, payment);
+            dto.PaymentId = p.PaymentId;
+            return CreatedAtAction(nameof(GetPayment), new { id = p.PaymentId }, dto);
         }
+
 
         // DELETE: api/Payments/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
-            var payment = await _context.Payments.FindAsync(id);
-            if (payment == null)
-            {
+            var p = await _context.Payments.FindAsync(id);
+            if (p == null)
                 return NotFound();
-            }
 
-            _context.Payments.Remove(payment);
+            _context.Payments.Remove(p);
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool PaymentExists(int id)
-        {
-            return _context.Payments.Any(e => e.PaymentId == id);
         }
     }
 }

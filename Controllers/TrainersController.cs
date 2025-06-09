@@ -22,86 +22,97 @@ namespace GymManager.Controllers
 
         // GET: api/Trainers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Trainer>>> GetTrainers()
+        public async Task<ActionResult<IEnumerable<TrainerDto>>> GetTrainers()
         {
-            return await _context.Trainers.ToListAsync();
+            var trainerDtos = await _context.Trainers
+                .Select(t => new TrainerDto
+                {
+                    TrainerId = t.TrainerId,
+                    FirstName = t.FirstName,
+                    LastName = t.LastName,
+                    Email = t.Email,
+                    PhoneNumber = t.PhoneNumber,
+                    Specialization = t.Specialization
+                })
+                .ToListAsync();
+
+            return Ok(trainerDtos);
         }
 
         // GET: api/Trainers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Trainer>> GetTrainer(int id)
+        public async Task<ActionResult<TrainerDto>> GetTrainer(int id)
         {
-            var trainer = await _context.Trainers.FindAsync(id);
-
-            if (trainer == null)
-            {
+            var t = await _context.Trainers.FindAsync(id);
+            if (t == null)
                 return NotFound();
-            }
 
-            return trainer;
+            var dto = new TrainerDto
+            {
+                TrainerId = t.TrainerId,
+                FirstName = t.FirstName,
+                LastName = t.LastName,
+                Email = t.Email,
+                PhoneNumber = t.PhoneNumber,
+                Specialization = t.Specialization
+            };
+
+            return Ok(dto);
         }
 
         // PUT: api/Trainers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTrainer(int id, Trainer trainer)
+        public async Task<IActionResult> PutTrainer(int id, TrainerDto dto)
         {
-            if (id != trainer.TrainerId)
-            {
+            if (id != dto.TrainerId)
                 return BadRequest();
-            }
 
-            _context.Entry(trainer).State = EntityState.Modified;
+            var t = await _context.Trainers.FindAsync(id);
+            if (t == null)
+                return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TrainerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            t.FirstName = dto.FirstName;
+            t.LastName = dto.LastName;
+            t.Email = dto.Email;
+            t.PhoneNumber = dto.PhoneNumber;
+            t.Specialization = dto.Specialization;
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         // POST: api/Trainers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Trainer>> PostTrainer(Trainer trainer)
+        public async Task<ActionResult<TrainerDto>> PostTrainer(TrainerDto dto)
         {
-            _context.Trainers.Add(trainer);
+            var t = new Trainer
+            {
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber,
+                Specialization = dto.Specialization
+            };
+
+            _context.Trainers.Add(t);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTrainer", new { id = trainer.TrainerId }, trainer);
+            dto.TrainerId = t.TrainerId;
+            return CreatedAtAction(nameof(GetTrainer), new { id = t.TrainerId }, dto);
         }
 
         // DELETE: api/Trainers/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTrainer(int id)
         {
-            var trainer = await _context.Trainers.FindAsync(id);
-            if (trainer == null)
-            {
+            var t = await _context.Trainers.FindAsync(id);
+            if (t == null)
                 return NotFound();
-            }
 
-            _context.Trainers.Remove(trainer);
+            _context.Trainers.Remove(t);
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool TrainerExists(int id)
-        {
-            return _context.Trainers.Any(e => e.TrainerId == id);
         }
     }
 }
