@@ -20,7 +20,10 @@ namespace GymManager.Controllers
             _context = context;
         }
 
-        // GET: api/Trainers
+        /// <summary>
+        /// Gets all trainers.
+        /// </summary>
+        /// <returns>List of trainer DTOs.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TrainerDto>>> GetTrainers()
         {
@@ -39,7 +42,11 @@ namespace GymManager.Controllers
             return Ok(trainerDtos);
         }
 
-        // GET: api/Trainers/5
+        /// <summary>
+        /// Gets a specific trainer by ID.
+        /// </summary>
+        /// <param name="id">The trainer ID.</param>
+        /// <returns>The trainer DTO if found; otherwise, NotFound.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<TrainerDto>> GetTrainer(int id)
         {
@@ -60,7 +67,12 @@ namespace GymManager.Controllers
             return Ok(dto);
         }
 
-        // PUT: api/Trainers/5
+        /// <summary>
+        /// Updates an existing trainer.
+        /// </summary>
+        /// <param name="id">The trainer ID.</param>
+        /// <param name="dto">The updated trainer DTO.</param>
+        /// <returns>NoContent if successful; otherwise, BadRequest or NotFound.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTrainer(int id, TrainerDto dto)
         {
@@ -81,7 +93,11 @@ namespace GymManager.Controllers
             return NoContent();
         }
 
-        // POST: api/Trainers
+        /// <summary>
+        /// Creates a new trainer.
+        /// </summary>
+        /// <param name="dto">The trainer DTO to create.</param>
+        /// <returns>The created trainer DTO.</returns>
         [HttpPost]
         public async Task<ActionResult<TrainerDto>> PostTrainer(TrainerDto dto)
         {
@@ -101,7 +117,11 @@ namespace GymManager.Controllers
             return CreatedAtAction(nameof(GetTrainer), new { id = t.TrainerId }, dto);
         }
 
-        // DELETE: api/Trainers/5
+        /// <summary>
+        /// Deletes a trainer by ID.
+        /// </summary>
+        /// <param name="id">The trainer ID.</param>
+        /// <returns>NoContent if successful; otherwise, NotFound.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTrainer(int id)
         {

@@ -21,7 +21,10 @@ namespace GymManager.Controllers
             _context = context;
         }
 
-        // GET: api/GymClasses
+        /// <summary>
+        /// Gets all gym classes with trainer details.
+        /// </summary>
+        /// <returns>List of gym class DTOs.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GymClassDto>>> GetGymClasses()
         {
@@ -40,8 +43,11 @@ namespace GymManager.Controllers
 
             return Ok(dtos);
         }
-
-        // GET: api/GymClasses/5
+        /// <summary>
+        /// Gets a specific gym class by ID.
+        /// </summary>
+        /// <param name="id">The gym class ID.</param>
+        /// <returns>The gym class DTO if found; otherwise, NotFound.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<GymClassDto>> GetGymClass(int id)
         {
@@ -65,7 +71,12 @@ namespace GymManager.Controllers
             return Ok(dto);
         }
 
-        // PUT: api/GymClasses/5
+        /// <summary>
+        /// Updates an existing gym class.
+        /// </summary>
+        /// <param name="id">The gym class ID.</param>
+        /// <param name="dto">The updated gym class DTO.</param>
+        /// <returns>NoContent if successful; otherwise, BadRequest or NotFound.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGymClass(int id, GymClassDto dto)
         {
@@ -85,7 +96,11 @@ namespace GymManager.Controllers
             return NoContent();
         }
 
-        // POST: api/GymClasses
+        /// <summary>
+        /// Creates a new gym class.
+        /// </summary>
+        /// <param name="dto">The gym class DTO to create.</param>
+        /// <returns>The created gym class DTO.</returns>
         [HttpPost]
         public async Task<ActionResult<GymClassDto>> PostGymClass(GymClassDto dto)
         {
@@ -110,7 +125,11 @@ namespace GymManager.Controllers
         }
 
 
-        // DELETE: api/GymClasses/5
+        /// <summary>
+        /// Deletes a gym class by ID.
+        /// </summary>
+        /// <param name="id">The gym class ID.</param>
+        /// <returns>NoContent if successful; otherwise, NotFound.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGymClass(int id)
         {

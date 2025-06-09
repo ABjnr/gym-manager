@@ -20,7 +20,10 @@ namespace GymManager.Controllers
             _context = context;
         }
 
-        // GET: api/ClassRegistrations
+        /// <summary>
+        /// Gets all class registrations with member and gym class details.
+        /// </summary>
+        /// <returns>List of class registration DTOs.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClassRegistrationDto>>> GetClassRegistrations()
         {
@@ -41,7 +44,11 @@ namespace GymManager.Controllers
             return Ok(dtos);
         }
 
-        // GET: api/ClassRegistrations/5
+        /// <summary>
+        /// Gets a specific class registration by ID.
+        /// </summary>
+        /// <param name="id">The class registration ID.</param>
+        /// <returns>The class registration DTO if found; otherwise, NotFound.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<ClassRegistrationDto>> GetClassRegistration(int id)
         {
@@ -66,7 +73,12 @@ namespace GymManager.Controllers
             return Ok(dto);
         }
 
-        // PUT: api/ClassRegistrations/5
+        /// <summary>
+        /// Updates an existing class registration.
+        /// </summary>
+        /// <param name="id">The class registration ID.</param>
+        /// <param name="dto">The updated class registration DTO.</param>
+        /// <returns>NoContent if successful; otherwise, BadRequest or NotFound.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClassRegistration(int id, ClassRegistrationDto dto)
         {
@@ -85,7 +97,11 @@ namespace GymManager.Controllers
             return NoContent();
         }
 
-        // POST: api/ClassRegistrations
+        /// <summary>
+        /// Creates a new class registration.
+        /// </summary>
+        /// <param name="dto">The class registration DTO to create.</param>
+        /// <returns>The created class registration DTO.</returns>
         [HttpPost]
         public async Task<ActionResult<ClassRegistrationDto>> PostClassRegistration(ClassRegistrationDto dto)
         {
@@ -102,7 +118,7 @@ namespace GymManager.Controllers
                 MemberId = dto.MemberId,
                 Member = member,
                 GymClassId = dto.GymClassId,
-                GymClass = gymClass, 
+                GymClass = gymClass,
                 RegistrationDate = dto.RegistrationDate
             };
 
@@ -113,8 +129,11 @@ namespace GymManager.Controllers
             return CreatedAtAction(nameof(GetClassRegistration), new { id = r.ClassRegistrationId }, dto);
         }
 
-
-        // DELETE: api/ClassRegistrations/5
+        /// <summary>
+        /// Deletes a class registration by ID.
+        /// </summary>
+        /// <param name="id">The class registration ID.</param>
+        /// <returns>NoContent if successful; otherwise, NotFound.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClassRegistration(int id)
         {

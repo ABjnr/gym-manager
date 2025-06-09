@@ -21,7 +21,10 @@ namespace GymManager.Controllers
             _context = context;
         }
 
-        // GET: api/Payments
+        /// <summary>
+        /// Gets all payments with member details.
+        /// </summary>
+        /// <returns>List of payment DTOs.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PaymentDto>>> GetPayments()
         {
@@ -41,7 +44,11 @@ namespace GymManager.Controllers
             return Ok(dtos);
         }
 
-        // GET: api/Payments/5
+        /// <summary>
+        /// Gets a specific payment by ID.
+        /// </summary>
+        /// <param name="id">The payment ID.</param>
+        /// <returns>The payment DTO if found; otherwise, NotFound.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<PaymentDto>> GetPayment(int id)
         {
@@ -65,7 +72,12 @@ namespace GymManager.Controllers
             return Ok(dto);
         }
 
-        // PUT: api/Payments/5
+        /// <summary>
+        /// Updates an existing payment.
+        /// </summary>
+        /// <param name="id">The payment ID.</param>
+        /// <param name="dto">The updated payment DTO.</param>
+        /// <returns>NoContent if successful; otherwise, BadRequest or NotFound.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPayment(int id, PaymentDto dto)
         {
@@ -85,7 +97,11 @@ namespace GymManager.Controllers
             return NoContent();
         }
 
-        // POST: api/Payments
+        /// <summary>
+        /// Creates a new payment.
+        /// </summary>
+        /// <param name="dto">The payment DTO to create.</param>
+        /// <returns>The created payment DTO.</returns>
         [HttpPost]
         public async Task<ActionResult<PaymentDto>> PostPayment(PaymentDto dto)
         {
@@ -96,7 +112,7 @@ namespace GymManager.Controllers
             var p = new Payment
             {
                 MemberId = dto.MemberId,
-                Member = member, 
+                Member = member,
                 Amount = dto.Amount,
                 Method = dto.Method,
                 Date = dto.Date
@@ -109,8 +125,11 @@ namespace GymManager.Controllers
             return CreatedAtAction(nameof(GetPayment), new { id = p.PaymentId }, dto);
         }
 
-
-        // DELETE: api/Payments/5
+        /// <summary>
+        /// Deletes a payment by ID.
+        /// </summary>
+        /// <param name="id">The payment ID.</param>
+        /// <returns>NoContent if successful; otherwise, NotFound.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {

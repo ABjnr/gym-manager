@@ -20,7 +20,10 @@ namespace GymManager.Controllers
             _context = context;
         }
 
-        // GET: api/Members
+        /// <summary>
+        /// Gets all members with registration count.
+        /// </summary>
+        /// <returns>List of member DTOs.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembers()
         {
@@ -41,7 +44,11 @@ namespace GymManager.Controllers
             return Ok(memberDtos);
         }
 
-        // GET: api/Members/5
+        /// <summary>
+        /// Gets a specific member by ID with registration count.
+        /// </summary>
+        /// <param name="id">The member ID.</param>
+        /// <returns>The member DTO if found; otherwise, NotFound.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<MemberDto>> GetMember(int id)
         {
@@ -67,7 +74,12 @@ namespace GymManager.Controllers
             return Ok(dto);
         }
 
-        // PUT: api/Members/5
+        /// <summary>
+        /// Updates an existing member.
+        /// </summary>
+        /// <param name="id">The member ID.</param>
+        /// <param name="dto">The updated member DTO.</param>
+        /// <returns>NoContent if successful; otherwise, BadRequest or NotFound.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMember(int id, MemberDto dto)
         {
@@ -89,7 +101,11 @@ namespace GymManager.Controllers
             return NoContent();
         }
 
-        // POST: api/Members
+        /// <summary>
+        /// Creates a new member.
+        /// </summary>
+        /// <param name="dto">The member DTO to create.</param>
+        /// <returns>The created member DTO.</returns>
         [HttpPost]
         public async Task<ActionResult<MemberDto>> PostMember(MemberDto dto)
         {
@@ -110,7 +126,11 @@ namespace GymManager.Controllers
             return CreatedAtAction(nameof(GetMember), new { id = member.MemberId }, dto);
         }
 
-        // DELETE: api/Members/5
+        /// <summary>
+        /// Deletes a member by ID.
+        /// </summary>
+        /// <param name="id">The member ID.</param>
+        /// <returns>NoContent if successful; otherwise, NotFound.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMember(int id)
         {
@@ -125,4 +145,3 @@ namespace GymManager.Controllers
         }
     }
 }
-
