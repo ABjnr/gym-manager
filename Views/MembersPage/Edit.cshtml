@@ -1,0 +1,37 @@
+﻿@model GymManager.Models.MemberDto
+@{
+    ViewData["Title"] = "Edit Member";
+}
+<h1>Edit Member</h1>
+<form asp-action="Edit">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" asp-for="MemberId" />
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MembershipType"></label>
+        <input asp-for="MembershipType" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="JoinDate"></label>
+        <input asp-for="JoinDate" class="form-control" type="date" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

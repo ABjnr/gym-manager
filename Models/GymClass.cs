@@ -26,12 +26,29 @@ namespace GymManager.Models
 
     public class GymClassDto
     {
+       
         public int GymClassId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public int TrainerId { get; set; }
-        public string TrainerName { get; set; }
+
+        public string? TrainerName { get; set; }
+
+        [Required]
         public TimeOnly ScheduleTime { get; set; }
+
+        [Required]
         public int MaxCapacity { get; set; }
+
+    }
+
+    public class GymClassDetailsViewModel
+    {
+        public GymClassDto GymClass { get; set; }
+        public List<ClassRegistrationDto> EnrolledMembers { get; set; }
     }
 
 }

@@ -21,14 +21,21 @@ namespace GymManager.Models
 
     }
 
+
     public class ClassRegistrationDto
     {
         public int ClassRegistrationId { get; set; }
+
+        [Required]
         public int MemberId { get; set; }
-        public string MemberFullName { get; set; } 
+        public string? MemberFullName { get; set; }
+
+        [Required]
         public int GymClassId { get; set; }
-        public string GymClassName { get; set; }
+        public string? GymClassName { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime RegistrationDate { get; set; }
     }
-
 }

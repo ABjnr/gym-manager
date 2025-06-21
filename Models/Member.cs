@@ -36,4 +36,11 @@ namespace GymManager.Models
         public int RegisteredClassCount { get; set; }
     }
 
+    public class MemberDetailsViewModel
+    {
+        public MemberDto Member { get; set; }
+        public List<ClassRegistrationDto> ClassRegistrations { get; set; }
+    }
+
+
 }

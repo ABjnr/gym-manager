@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GymManager.Models.GymClass>
+@{
+    ViewData["Title"] = "Gym Classes";
+}
+<h1>Gym Classes</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Gym Class</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Trainer</th>
+            <th>Schedule Time</th>
+            <th>Max Capacity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Trainer.FirstName @item.Trainer.LastName</td>
+                <td>@item.ScheduleTime</td>
+                <td>@item.MaxCapacity</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.GymClassId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.GymClassId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.GymClassId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

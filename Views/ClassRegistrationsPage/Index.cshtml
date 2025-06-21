@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GymManager.Models.ClassRegistrationDto>
+@{
+    ViewData["Title"] = "Class Registrations";
+}
+<h1>Class Registrations</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Registration</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Member</th>
+            <th>Gym Class</th>
+            <th>Registration Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MemberFullName</td>
+                <td>@item.GymClassName</td>
+                <td>@item.RegistrationDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ClassRegistrationId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ClassRegistrationId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClassRegistrationId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GymManager.Models.PaymentDto>
+@{
+    ViewData["Title"] = "Payments";
+}
+<h1>Payments</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Payment</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Member</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MemberFullName</td>
+                <td>@item.Amount.ToString("C")</td>
+                <td>@item.Method</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PaymentId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.PaymentId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PaymentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

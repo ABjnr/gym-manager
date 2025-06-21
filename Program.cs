@@ -1,8 +1,18 @@
+using GymManager.Interfaces;
 using GymManager.Models;
+using GymManager.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Associate service interfaces with their implementations
+builder.Services.AddScoped<IMemberService, MemberService>();
+builder.Services.AddScoped<ITrainerService, TrainerService>();
+builder.Services.AddScoped<IGymClassService, GymClassService>();
+builder.Services.AddScoped<IClassRegistrationService, ClassRegistrationService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("MyAppCs") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
